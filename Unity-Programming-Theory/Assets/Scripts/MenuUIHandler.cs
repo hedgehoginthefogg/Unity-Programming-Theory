@@ -35,11 +35,17 @@ public class MenuUIHandler : MonoBehaviour
         // make sure user has written username before starting game
         if(inputField.text != "")
         {
-            // TODO: Create DataHandler singleton
             // Get text from the input field and store in userInput variable
-            DataHandler.Instance.userName = inputField.text;
-            Debug.Log("User input stored: " + DataHandler.Instance.userName);
-            // Launch game
+            DataHandler.Instance.UserName = inputField.text;
+        }
+        else
+        {
+            Debug.LogError("Your username must be between 1-3 characters");
+        }
+        if (DataHandler.Instance.UserName != null)
+        {
+            Debug.Log(DataHandler.Instance.UserName);
+        // Launch game
             SceneManager.LoadScene(1);
         }
     }

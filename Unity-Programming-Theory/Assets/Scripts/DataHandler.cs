@@ -14,6 +14,32 @@ public class DataHandler : MonoBehaviour
      // make it a static class so values stored in this class member will be shared by all instances of that class. Using get private set so other scripts and access but only this script can set the instance variable
     public static DataHandler Instance {get; private set;}
 
+
+    // private backing field for public userName
+    private string m_userName;
+    // public property that accesses the private backing field. It's standard to use PascalCase for property names.
+    public string UserName
+    {
+        get 
+        {
+            return m_userName; // getter returns backing field
+        }
+        set 
+        {
+            // check if the input value has more than 3 characters
+        if (value.Length > 3 || value.Length == 0)
+        {
+            Debug.LogError("Your username must be between 1-3 characters.");
+        }
+        else
+        {
+            m_userName = value; // set backing field if value passed in to public field meets condition
+            Debug.Log("Your username has been successfully stored: " + m_userName);
+        }
+        }
+    }
+
+
 // Make sure it's a singleton when script is loaded, before Start() is called
     private void Awake()
     {
@@ -29,3 +55,4 @@ public class DataHandler : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 }
+
